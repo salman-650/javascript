@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #3498db;
+      color: #fff;
+      padding: 15px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .header h2 {
+      margin: 0;
+    }
+
+    .header button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      border: none;
+      background: #fff;
+      color: #3498db;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    table th {
+      background: #f2f2f2;
+    }
+
+    .status {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .active { color: green; }
+    .active .dot { background: green; }
+    .inactive { color: orange; }
+    .inactive .dot { background: orange; }
+    .suspended { color: red; }
+    .suspended .dot { background: red; }
+
+    .actions button {
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .edit {
+      background: #3498db;
+      color: #fff;
+    }
+
+    .delete {
+      background: #e74c3c;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>User Management</h2>
+      <div>
+        <button>Export to Excel</button>
+        <button>Add New User</button>
+      </div>
+    </div>
+
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Date Created</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be loaded here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Example JSON data (this would normally come from an API)
+    const apiUrl = "https://mocki.io/v1/57c9a7f6-6f2d-4f63-92dd-8d6ec4b2a0c1"; 
+    // You can replace with your own API endpoint
+
+    async function loadUsers() {
+      try {
+        const res = await fetch(apiUrl);
+        const users = await res.json();
+        const tbody = document.querySelector("#userTable tbody");
+        tbody.innerHTML = "";
+
+        users.forEach((user, index) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${user.name}</td>
+            <td>${user.dateCreated}</td>
+            <td>${user.role}</td>
+            <td class="status ${user.status.toLowerCase()}">
+              <span class="dot"></span>${user.status}
+            </td>
+            <td class="actions">
+              <button class="edit">⚙️</button>
+              <button class="delete">❌</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    loadUsers();
+  </script>
+</body>
+</html>

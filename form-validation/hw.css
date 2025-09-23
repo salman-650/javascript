@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: hsl(240, 39%, 39%);
+        
+
+
+    
+}
+
+.container {
+    max-width: 900px;
+    margin: 28px auto;
+    padding: 40px 48px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family:  cursive;
+    font-size: 44px;
+    text-align: center;
+    margin: 6px 0 28px;
+    letter-spacing: 1px;
+}
+
+form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 6px;
+}
+
+p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+input,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border-radius: 3px;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: #222;
+    font-size: 15px;
+    opacity: .8;
+}
+
+.row {
+    display: flex;
+    gap: 18px;
+}
+
+.row .col {
+    flex: 1;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(243, 79, 154, 0.4);
+}
+
+button {
+    padding: 14px 16px;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100px;
+}
+
+button:hover {
+    background: #d6bcd6;
+}
+
+.btn-wrap {
+    text-align: center;
+    margin-top: 12px;
+}
+.error {
+    
+    color: red;
+}

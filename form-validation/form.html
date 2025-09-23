@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form-validation</title>
+    <style>
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .error{
+            color: red;
+            font-size: 14px;
+        }
+        input{
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+        }
+        button{
+            padding: 10px;
+            width: 20%;
+            margin-left: 9px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Register Form</h2>
+
+    <form id="myForm" onsubmit="">
+        <label>Name:</label>
+        <input type="text" id="name" name="name">
+        <span class="error" id="nameError"></span>
+
+        <label">Email</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+
+        <label>Phone number:</label>
+        <input type="text" name="phone" id="phone">
+        <span class="error" id="phoneError"></span>
+
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+       function validateForm(){
+
+       //clear previous error
+       document.getElementById("nameError").innerText="";
+       document.getElementById("emailError").innerText="";
+       document.getElementById("phoneError").innerText="";
+
+       let isValid = true;
+
+       //name validation
+       const name = document.getElementById("name").value.trim();
+       if(name === ""){
+        document.getElementById("nameError").innerText="Name is required";
+        isValid = false;
+       }
+
+       //email validation
+       const email = document.getElementById("email").value.trim();
+       const emailPattern =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+       if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerText = "Invalid email";
+        isValid = false;
+       }
+
+       //phonenumber validation
+       const phone = document.getElementById("phone").value.trim();
+       const phonePattern = /^\d{10}$/;
+       if (!phonePattern.test(phone)) {
+        document.getElementById("phoneError").innerText="phone number must be 10 digits";
+        isValid = false
+
+       }
+       
+       return isValid;
+
+       } 
+    </script>
+</body>
+</html>
+
+<!-- // Get form values -->
+ <!-- // Clear errors -->
+  

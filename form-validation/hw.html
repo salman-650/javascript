@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spa client form</title>
+    <link rel="stylesheet" href="./hw.css">
+</head>
+
+<body>
+    <div class="container">
+    <h1>Spa Client Intake Form</h1>
+    <form>
+      <!-- Name -->
+      <div>
+        <label for="first">Name</label>
+        <div class="row">
+          <div class="col">
+            <input type="text" id="first" name="first"/>
+            <span class="error" id="nameError"></span>
+            <p>First Name</p>
+          </div>
+          <div class="col">
+            <input type="text" id="last" name="last"/>
+            <p>Last Name</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone"/>
+        <span class="error" id="phoneError"></span>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email"/>
+        <span class="error" id="emailError"></span>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label for="addr1">Address</label>
+        <input type="text" id="addr1" name="addr1"/>
+        <span class="error" id="addrError"></span>
+        <p>Street Address</p>
+        <input type="text" id="addr2" name="addr2"/>
+        <p>Address Line 2</p>
+      </div>
+
+      <!-- City / State -->
+      <div class="row">
+        <div class="col">
+          <input type="text" id="city" name="city"/>
+          <span class="error" id="cityError"></span>
+          <p>City</p>
+        </div>
+        <div class="col">
+          
+          <input type="text" id="state" name="state"/>
+          <span class="error" id="stateError"></span>
+          <p>State/Region/Province</p>
+        </div>
+      </div>
+
+      <!-- Postal / Country -->
+      <div class="row">
+        <div class="col">
+          <input type="text" id="postal" name="postal"/>
+            <span class="error" id="postalError"></span>
+          <p>Postal / Zip Code</p>
+        </div>
+        <div class="col">
+          <select id="country">
+            <option value="">select a country</option>
+            <option>India</option>
+            <option>United States</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+          </select>
+            <span class="error" id="countryError"></span>
+          <p>Country</p>
+        </div>
+      </div>
+
+      <div class="btn-wrap">
+        <button class="btn" type="button" onclick="validateForm()">Next</button>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+    function validateForm() {
+      // Clear previous errors
+      document.getElementById("nameError").innerText = "";
+      document.getElementById("phoneError").innerText = "";
+      document.getElementById("emailError").innerText = "";
+      document.getElementById("addrError").innerText = "";
+      document.getElementById("cityError").innerText = "";
+      document.getElementById("stateError").innerText = "";
+      document.getElementById("postalError").innerText = "";
+      document.getElementById("countryError").innerText = "";
+
+      let isValid = true;
+
+      // Name validation
+      const name = document.getElementById("first").value.trim();
+      if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        isValid = false;
+      }
+
+      // Phone validation
+      const phone = document.getElementById("phone").value.trim();
+      const phonePattern = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0])?[6789]\d{9}$/; 
+      if (!phonePattern.test(phone)) {
+        document.getElementById("phoneError").innerText =
+          "Phone number must be contain 10 digits";
+        isValid = false;
+      }
+
+      // Email validation
+      const email = document.getElementById("email").value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerText = "Invalid email format";
+        isValid = false;
+      }
+
+      // Address validation
+      const addr1 = document.getElementById("addr1").value.trim();
+      if (addr1 === "") {
+        document.getElementById("addrError").innerText = "Address is required";
+        isValid = false;
+      }
+
+      // City validation
+      const city = document.getElementById("city").value.trim();
+      if (city === "") {
+        document.getElementById("cityError").innerText = "City is required";
+        isValid = false;
+      }
+
+      // State validation
+      const state = document.getElementById("state").value.trim();
+      if (state === "") {
+        document.getElementById("stateError").innerText = "State is required";
+        isValid = false;
+        }
+
+      // Postal code validation
+      const postal = document.getElementById("postal").value.trim();
+      if (postal === "") {
+        document.getElementById("postalError").innerText = "Postal code is required";
+        isValid = false;
+      }
+
+      // Country validation
+      const country = document.getElementById("country").value;
+      if (country === "") {
+        document.getElementById("countryError").innerText = "Country is required";
+        isValid = false;
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>
