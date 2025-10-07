@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>resize events</h2>
+  <p id="msg">Resize the window to see the effect</p>
+
+  <script>
+    window.addEventListener("resize", () =>{
+        document.getElementById("msg").textContent =
+        "window size: " + window.innerWidth + "X" + window.innerHeight;
+
+    });
+  </script>
+</body>
+</html>

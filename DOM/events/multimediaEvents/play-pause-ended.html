@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>play pause end EVENTS</h2>
+    <audio id="audioplayer" controls>
+        <source src="./CHAL(128k).mp3" type="audio/mp3">
+    </audio>
+
+    <p id="eventOutput">event will appear here</p>
+    <script>
+        const audio = document.getElementById("audioplayer");
+        const output = document.getElementById("eventOutput");
+
+        //playevent
+        audio.addEventListener("play", () => {
+            output.textContent = "play event fired!!";
+            console.log("play event fired!!");
+             });
+
+             //pauseevent
+        audio.addEventListener("pause", () => {
+            output.textContent = "pause event fired!!";
+            console.log("pause event fired!!");
+             });
+
+             //endedevent
+        audio.addEventListener("ended", () => {
+            output.textContent = "ended event fired!!";
+            console.log("ended event fired!!");
+             });
+    </script>
+    
+</body>
+</html>
